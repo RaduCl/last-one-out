@@ -7,19 +7,111 @@
     display: -webkit-flex;
     justify-content: space-between;
 
-    margin: 50px 0;
+    margin: 30px 0 15px 0;
 }
 
-.footer{
+.controls{
     display: flex;
     display: -webkit-flex;
     -webkit-flex-direction: column;
     -ms-flex-direction: column;
     flex-direction: column;
+    margin-top: -65px;
 }
 
-.footer-item{
+.controls-item{
     align-self: center;
     margin: 10px 0;
     width: 250px;
+}
+
+.game-board{
+    min-height: 60vh;
+}
+
+body{
+    background-color: #004066!important;
+}
+
+.game-board{
+    background-color: #00314f!important;
+}
+
+
+.title{
+    display: flex;
+    display: -webkit-flex;
+    -webkit-box-direction: normal;
+    -moz-box-direction: normal;
+    -webkit-box-orient: horizontal;
+    -moz-box-orient: horizontal;
+
+    -webkit-flex-direction: column;
+    -ms-flex-direction: column;
+    flex-direction: column;
+
+    color: #fff;
+    font-size: 55px;
+    text-align: center;
+    background-color: #fcae08;
+    margin: 15px 0;
+}
+title h1{
+    -webkit-box-ordinal-group: 1;
+    -moz-box-ordinal-group: 1;
+    -webkit-box-flex: 0;
+    -moz-box-flex: 0;
+    -webkit-flex: 0 1 auto;
+    -ms-flex: 0 1 auto;
+    flex: 0 1 auto;
+    -webkit-align-self: center;
+    -ms-flex-item-align: center;
+    align-self: center;
+
+    -webkit-text-stroke: 5px #d37507;
+}
+
+
+
+.button {
+    -moz-box-shadow: 0px 5px 4px #272727;
+    -webkit-box-shadow: 0px 5px 4px #272727;
+    box-shadow: 0px 5px 4px #272727;
+}
+
+.player-name{
+    background-color: #fcae08!important;
+    border-color: #fcae08!important;
+}
+/*.player-name p{*/
+    /*-moz-text-shadow: 1px 1px 5px #d37507;*/
+    /*-webkit-text-shadow: 1px 1px 5px #d37507;*/
+    /*text-shadow: 1px 1px 5px #d37507;*/
+/*}*/
+
+.end-turn{
+    background-color: #d20707!important;
+    border-color: #d20707 !important;
+}
+.end-turn:hover{
+    background-color: #a20000 !important;
+}
+.new-game{
+    background-color: #7aab05!important;
+    border-color: #7aab05!important;
+}
+.new-game:hover{
+    background-color: #5e8405 !important;
+}
+
+
+.button{
+    padding: .75rem 1.25rem;
+    font-size: 1.25rem;
+    line-height: 1.333333;
+    border-radius: .3rem;
+    color: #fff;
+    display: inline-block;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    text-align: center;
 }
