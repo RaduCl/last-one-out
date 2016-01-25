@@ -16,7 +16,7 @@
     -webkit-flex-direction: column;
     -ms-flex-direction: column;
     flex-direction: column;
-    margin-top: -65px;
+    margin-top: -37px;
 }
 
 .controls-item{
@@ -26,7 +26,8 @@
 }
 
 .game-board{
-    min-height: 60vh;
+    min-height: 52vh;
+    border-radius: 10px;
 }
 
 body{
@@ -38,39 +39,17 @@ body{
 }
 
 
-.title{
-    display: flex;
-    display: -webkit-flex;
-    -webkit-box-direction: normal;
-    -moz-box-direction: normal;
-    -webkit-box-orient: horizontal;
-    -moz-box-orient: horizontal;
-
-    -webkit-flex-direction: column;
-    -ms-flex-direction: column;
-    flex-direction: column;
-
-    color: #fff;
-    font-size: 55px;
+.game-logo {
     text-align: center;
-    background-color: #fcae08;
-    margin: 15px 0;
+    margin-top: 25px;
 }
-title h1{
-    -webkit-box-ordinal-group: 1;
-    -moz-box-ordinal-group: 1;
-    -webkit-box-flex: 0;
-    -moz-box-flex: 0;
-    -webkit-flex: 0 1 auto;
-    -ms-flex: 0 1 auto;
-    flex: 0 1 auto;
-    -webkit-align-self: center;
-    -ms-flex-item-align: center;
-    align-self: center;
-
-    -webkit-text-stroke: 5px #d37507;
+.game-logo img{
+    width: 40vw;
 }
-
+.coin{
+    width: 6vw;
+    cursor: pointer;
+}
 
 
 .button {
@@ -78,10 +57,21 @@ title h1{
     -webkit-box-shadow: 0px 5px 4px #272727;
     box-shadow: 0px 5px 4px #272727;
 }
-
+.end-turn, .new-game{
+    cursor: pointer;
+}
 .player-name{
     background-color: #fcae08!important;
     border-color: #fcae08!important;
+}
+.player-active-true{
+    background-color: #fcae08!important;
+    border-color: #fcae08!important;
+}
+
+.player-active-false{
+    background-color: #A1A1A1!important;
+    border-color: #A1A1A1!important;
 }
 /*.player-name p{*/
     /*-moz-text-shadow: 1px 1px 5px #d37507;*/
@@ -102,6 +92,13 @@ title h1{
 }
 .new-game:hover{
     background-color: #5e8405 !important;
+}
+
+.alert-winner{
+    background-color: #FCAE08;
+    margin: 43px auto;
+    position: absolute;
+    left: 40vw;
 }
 
 

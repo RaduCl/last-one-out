@@ -1,14 +1,16 @@
 import React from 'react'
 import { Component } from 'react'
+import NewGameButton from './new_game_button.js'
 
-export default class Controls extends Component {
-    render(){
-        return(
-            <div className="controls">
-                <div className="button end-turn controls-item" >End Turn</div>
-                <div className="button new-game controls-item" >New Game</div>
-                <div className="button controls-item" >Player One Wins!</div>
-            </div>
-        )
-    }
+const Controls = ({startGameHandle, changeTurnHandle}) => {
+    return(
+        <div className="controls">
+            <NewGameButton startGameHandle={startGameHandle} />
+            <div
+            onClick={() => changeTurnHandle()}
+            className="button end-turn controls-item" >End Turn</div>
+        </div>
+    )
 }
+
+export default Controls
