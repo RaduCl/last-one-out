@@ -30,6 +30,7 @@ export default class App extends Component {
         return arr
     }
 
+    //TODO figure a way to trigger computerPlay after setState(leftCoins)
     choseFirstPlayer(){
         if(this.startingNrOfCoins() < 20){
             this.setState({activePlayer: 1, p1: true, p2: false})
@@ -37,7 +38,6 @@ export default class App extends Component {
         } else {
             this.setState({activePlayer: 2, p1: false, p2: true})
             this.computerPlay();
-            return 2
         }
     }
 
@@ -51,6 +51,7 @@ export default class App extends Component {
     }
 
     computerPlay(){
+        console.log('this.state.coinsLeft.length: ',this.state.coinsLeft.length)
         const coinsLeft = this.state.coinsLeft.length;
         const nextL = function(coins){
             if((coins%4)===1){

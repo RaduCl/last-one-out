@@ -9,11 +9,11 @@ class Board extends Component {
 
     componentDidMount(){
         // const self = this
-        if(this.props.endOfGame===true){
-            this.props.alertWinner()
-        }
-        alert('The winner is: ')
-        // setTimeout(self.render(), 500)
+        // if(this.props.endOfGame===true){
+        //     this.props.alertWinner()
+        // }
+        // alert('The winner is: ')
+        // setTimeout(this.render(), 500)
     }
 
     coins(){
