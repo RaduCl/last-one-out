@@ -48,9 +48,20 @@ body{
 }
 .coin{
     width: 6vw;
+    position: absolute;
     cursor: pointer;
+    border-radius: 50%;    
+    transition: all .2s ease-in-out;
 }
 
+.coin:hover {
+    width: 7vw;
+    box-shadow: rgba(0, 0, 0, 0.61) 12px 12px 50px;
+}
+
+.coin.deleted {
+    opacity: 0;
+}
 
 .button {
     -moz-box-shadow: 0px 5px 4px #272727;

@@ -1,17 +1,16 @@
-import React from 'react'
-// import { Component } from 'react'
+import React from 'react';
 
-const Header = ({coinsLeft, p1, p2}) => {
-    const p1ClassName = "button player-active-" + p1
-    const p2ClassName = "button player-active-" + p2
+const Header = ({ coinsLeft, activePlayer, p1, p2 }) => {
+    const p1ClassName = `button player-active-${activePlayer === 1 || false}`;
+    const p2ClassName = `button player-active-${activePlayer === 2 || false}`;
 
     return (
         <div className="header">
-            <div className={p1ClassName} >Player One</div>
-            <div className="button player-name" >Coins {coinsLeft.length || null}</div>
-            <div className={p2ClassName} >Computer</div>
+            <div className={p1ClassName} >{p1}</div>
+            <div className="button player-name" >Coins {coinsLeft || null}</div>
+            <div className={p2ClassName} >{p2}</div>
         </div>
-    )
-}
+    );
+};
 
-export default Header
+export default Header;

@@ -13,4 +13,4 @@ const Controls = ({startGameHandle, changeTurnHandle}) => {
     )
 }
 
-export default Controls
+export default Controls;

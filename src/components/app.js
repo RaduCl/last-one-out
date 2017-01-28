@@ -1,163 +1,186 @@
 import React from 'react';
 import { Component } from 'react';
-import Title from './title.js'
-import Head from './header.js'
-import Board from './board.js'
-import Controls from './controls.js'
+import Title from './title';
+import Head from './header';
+import Board from './board';
+import Controls from './controls';
 
 export default class App extends Component {
-    constructor(props){
-        super(props)
+    constructor(props) {
+        super(props);
         this.state = {
+            P1: 'Playa1',
+            P2: 'Pleya2',
             coinsLeft: [],
-            activePlayer: null,
-            p1: false,
-            p2: false,
-            coinsPerTurn: 0,
-            endOfGame: false
-        }
+            activePlayer: 0,
+            coinsRemovedThisTurn: 0,
+            endOfGame: false,
+        };
+
+        // this.nextLoosingPosition = this.nextLoosingPosition.bind(this);
+        this.removeCoin = this.removeCoin.bind(this);
+        this.changePlayerTurn = this.changePlayerTurn.bind(this);
+        this.startNewGame = this.startNewGame.bind(this);
+        // this.computerPlay = this.computerPlay.bind(this);
+    }
+
+    getCoinPosition(min, max) {
+        return Math.trunc((Math.random() * (max - min)) + min);
     }
 
     startingNrOfCoins() {
-        return Math.floor(Math.random()*20 + 10)
+        return (Math.floor(Math.random() * 20) + 10);
     }
 
-    coinsArr(x){
-        let arr=[];
-        for(let i = 0; i<x; i++){
-            arr.push(i)
+
+    generateCoins(x) {
+        let arr = [];
+        for (let i = 0; i < x; i += 1) {
+            arr.push({
+                id: i,
+                xPos: `${this.getCoinPosition(30, 70)}vw`,
+                yPos: `${this.getCoinPosition(30, 70)}vh`,
+            });
         }
-        return arr
+        return arr;
     }
 
-    //TODO figure a way to trigger computerPlay after setState(leftCoins)
-    choseFirstPlayer(){
-        if(this.startingNrOfCoins() < 20){
-            this.setState({activePlayer: 1, p1: true, p2: false})
-            return 1
+    // TODO figure a way to trigger computerPlay after setState(leftCoins)
+    choseStartingPlayer() {
+        if (this.startingNrOfCoins() < 20) {
+            this.setState({ activePlayer: 1 });
+            return 1;
+        }
+
+        this.setState({ activePlayer: 2 });
+        return 2;
+        // this.computerPlay();
+    }
+
+    changePlayerTurn() {
+        if (this.state.activePlayer === 1) {
+            this.setState({ activePlayer: 2, coinsRemovedThisTurn: 0 });
+            // this.computerPlay();
         } else {
-            this.setState({activePlayer: 2, p1: false, p2: true})
-            this.computerPlay();
+            this.setState({ activePlayer: 1, coinsRemovedThisTurn: 0 });
         }
     }
 
-    changePlayerTurn(){
-        if(this.state.p1 === true){
-            this.setState({activePlayer: 2, p1:false, p2: true, coinsPerTurn: 0})
-            this.computerPlay()
-        } else {
-            this.setState({activePlayer: 1, p1:true, p2: false, coinsPerTurn: 0})
-        }
-    }
 
-    computerPlay(){
-        console.log('this.state.coinsLeft.length: ',this.state.coinsLeft.length)
-        const coinsLeft = this.state.coinsLeft.length;
-        const nextL = function(coins){
-            if((coins%4)===1){
-                return coins
-            } else{
-                return nextL(coins-1)
-            }
-        }
+    // computerPlay() {
+    //     const coinsLeft = this.state.coinsLeft.length;
+    //     // const nextLoosingPosition = this.nextLoosingPosition(coinsLeft);
+    //     // const coinId = this.state.coinsLeft.slice(0, 1);
 
-        const coinId = this.state.coinsLeft.slice(0,1)
+    //     function nextLoosingPosition(x) {
+    //         if (x % 4 === 1) return x;
+    //         nextLoosingPosition(x - 1);
+    //     }
 
-        const deltaToNextL = coinsLeft - nextL(coinsLeft);
+    //     const t = nextLoosingPosition(coinsLeft);
 
-        if(deltaToNextL===0){
-            this.computerRemoveCoin()
-            this.setState({activePlayer: 1, p1:true, p2: false})
-            return
-        } else{
-            if(deltaToNextL>3){
-                this.computerRemoveCoin()
-                this.setState({activePlayer: 1, p1:true, p2: false})
-                return
-            } else{
-                for(let i = 0; i<deltaToNextL; i++ ){
-                    this.computerRemoveCoin()
-                }
-                this.setState({activePlayer: 1, p1:true, p2: false})
-                return
-            }
-        }
-    }
+    //     const deltaToNextL = coinsLeft - t;
+    //     console.log('deltaToNextL: ', deltaToNextL);
 
-    computerRemoveCoin(){
-        let coinsArr = this.state.coinsLeft;
-        coinsArr.pop()
-        this.setState({
-            coinsLeft: coinsArr
-        })
-        if(coinsArr.length===1) this.setState({endOfGame: true})
-    }
+    //     if (deltaToNextL === 0) {
+    //         setTimeout(() => {
+    //             this.removeCoin(this.state.coinsLeft[0]);
+    //             this.setState({ activePlayer: 1 });
+    //             return;
+    //         }, 1000);
+    //         // this.changePlayerTurn();
+    //     } else {
+    //         if (deltaToNextL > 3) {
+    //             setTimeout(() => {
+    //                 this.removeCoin(this.state.coinsLeft[0]);
+    //                 // this.setState({activePlayer: 1})
+    //                 this.changePlayerTurn();
+    //                 return;
+    //             }, 1000);
+    //         } else {
+    //             for (let i = 0; i < deltaToNextL; i += 1) {
+    //                 setTimeout(() => {
+    //                     this.removeCoin(this.state.coinsLeft[0]);
+    //                 }, 1000);
+    //             }
+    //             // this.setState({activePlayer: 1})
+    //             this.changePlayerTurn();
+    //             return;
+    //         }
+    //     }
+    // }
 
-    removeCoin(id){
-        let cpt = this.state.coinsPerTurn
-        cpt++;
-        const arr = this.state.coinsLeft;
-        const i = arr.indexOf(id)
-        arr.splice(i,1);
+    // computerRemoveCoin() {
+    //     this.setState({
+    //         coinsLeft: this.state.coinsLeft.slice(-1)
+    //     })
+    //     if(this.state.coinsLeft.length===1) this.setState({endOfGame: true})
+    // }
 
-        if (cpt<4){
+    removeCoin(id) {
+        let cpt = this.state.coinsRemovedThisTurn;
+        cpt += 1;
+        console.log('cpt: ', cpt);
+        const arr = this.state.coinsLeft
+            .filter(coin => coin.id !== id);
+
+        if (cpt < 4) {
             this.setState({
                 coinsLeft: arr,
-                coinsPerTurn: cpt
-            })
-            // if game reached end state
-            if (this.state.coinsLeft.length === 1){
-                this.setState({endOfGame: true, activePlayer: 2, p1:false, p2: true})
-            }
-        }
+                coinsRemovedThisTurn: cpt,
+            });
 
-        if(cpt===3) {
-            if (this.state.coinsLeft.length === 1){
-                this.setState({endOfGame: true, activePlayer: 2, p1:false, p2: true})
-            } else{
-                this.changePlayerTurn()
+            // if player removed max coin count
+            if (cpt === 3) {
+                // check game ended state
+                if (this.state.coinsLeft.length === 1) {
+                    this.setState({
+                        endOfGame: true,
+                        activePlayer: this.state.activePlayer === 1 ? 2 : 1,
+                    });
+                } else {
+                    this.changePlayerTurn();
+                }
             }
         }
     }
 
-    resetGame(){
-        this.setState(
-            {
-                coinsLeft: [],
-                activePlayer: null,
-                p1: false,
-                p2: false,
-                coinsPerTurn: 0,
-                endOfGame: false
-            }
-        )
+    startNewGame() {
+        this.setState({
+            coinsLeft: this.generateCoins(this.startingNrOfCoins()),
+            activePlayer: this.choseStartingPlayer(),
+            coinsRemovedThisTurn: 0,
+            endOfGame: false,
+        });
+        // this.beginPlaying();
     }
+
+    // beginPlaying() {
+    //     // check is computer activePlayer
+    //     if (this.state.activePlayer === 2) this.computerPlay();
+    // }
 
     render() {
         return (
             <div>
                 <Title />
                 <Head
-                    coinsLeft={ this.state.coinsLeft }
-                    p1={ this.state.p1 }
-                    p2={ this.state.p2 } />
+                    coinsLeft={this.state.coinsLeft.length}
+                    activePlayer={this.state.activePlayer}
+                    p1={this.state.P1}
+                    p2={this.state.P2}
+                />
                 <Board
-                    coinsLeft={ this.state.coinsLeft }
+                    coinsLeft={this.state.coinsLeft}
                     handleClickCoin={coinId => this.removeCoin(coinId)}
                     endOfGame = {this.state.endOfGame}
                     alertWinner = {() => this.alertWinner}
-                    activePlayer = {this.state.activePlayer} />
+                    activePlayer = {this.state.activePlayer}
+                />
                 <Controls
-                    startGameHandle={ () => {
-                        this.setState({
-                            coinsLeft: this.coinsArr(this.startingNrOfCoins()),
-                            // activePlayer: this.choseFirstPlayer(),
-                            coinsPerTurn: 0,
-                            endOfGame: false
-                        })
-                        this.choseFirstPlayer()
-                    }}
-                    changeTurnHandle={ () => this.changePlayerTurn() } />
+                    startGameHandle={this.startNewGame}
+                    changeTurnHandle={this.changePlayerTurn}
+                />
             </div>
         );
     }
