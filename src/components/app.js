@@ -11,6 +11,8 @@ export default class App extends Component {
         this.state = {
             P1: 'Playa1',
             P2: 'Pleya2',
+            p1Coins: [],
+            p2Coins: [],
             coinsLeft: [],
             activePlayer: 0,
             coinsRemovedThisTurn: 0,
@@ -38,8 +40,8 @@ export default class App extends Component {
         for (let i = 0; i < x; i += 1) {
             arr.push({
                 id: i,
-                xPos: `${this.getCoinPosition(30, 70)}vw`,
-                yPos: `${this.getCoinPosition(30, 70)}vh`,
+                xPos: `${this.getCoinPosition(9, 45)}vw`,
+                yPos: `${this.getCoinPosition(30, 60)}vh`,
             });
         }
         return arr;
@@ -66,6 +68,9 @@ export default class App extends Component {
         }
     }
 
+    isGameOver() {
+        return this.state.coinsLeft.length === 1 || false;
+    }
 
     // computerPlay() {
     //     const coinsLeft = this.state.coinsLeft.length;
@@ -118,9 +123,11 @@ export default class App extends Component {
     // }
 
     removeCoin(id) {
-        let cpt = this.state.coinsRemovedThisTurn;
-        cpt += 1;
+        const cpt = this.state.coinsRemovedThisTurn + 1;
+        const activePlayer = this.state.activePlayer;
+
         console.log('cpt: ', cpt);
+
         const arr = this.state.coinsLeft
             .filter(coin => coin.id !== id);
 
@@ -130,17 +137,31 @@ export default class App extends Component {
                 coinsRemovedThisTurn: cpt,
             });
 
+            // set removed coin by current player
+            if (activePlayer === 1) {
+                this.setState({
+                    p1Coins: this.state.p1Coins.concat(this.state.coinsLeft.filter(coin => coin.id === id)),
+                });
+            } else {
+                this.setState({
+                    p2Coins: this.state.p2Coins.concat(this.state.coinsLeft.filter(coin => coin.id === id)),
+                });
+            }
+
+            // check game ended state
+            if (arr.length === 1) {
+                this.setState({
+                    endOfGame: true,
+                    activePlayer: activePlayer === 1 ? 2 : 1,
+                });
+                return;
+            }
+
             // if player removed max coin count
+            // change player automaticaly
             if (cpt === 3) {
-                // check game ended state
-                if (this.state.coinsLeft.length === 1) {
-                    this.setState({
-                        endOfGame: true,
-                        activePlayer: this.state.activePlayer === 1 ? 2 : 1,
-                    });
-                } else {
-                    this.changePlayerTurn();
-                }
+                this.changePlayerTurn();
+                return;
             }
         }
     }
@@ -150,6 +171,8 @@ export default class App extends Component {
             coinsLeft: this.generateCoins(this.startingNrOfCoins()),
             activePlayer: this.choseStartingPlayer(),
             coinsRemovedThisTurn: 0,
+            p1Coins: [],
+            p2Coins: [],
             endOfGame: false,
         });
         // this.beginPlaying();
@@ -176,6 +199,10 @@ export default class App extends Component {
                     endOfGame = {this.state.endOfGame}
                     alertWinner = {() => this.alertWinner}
                     activePlayer = {this.state.activePlayer}
+                    p1={this.state.P1}
+                    p2={this.state.P2}
+                    p1Coins={this.state.p1Coins}
+                    p2Coins={this.state.p2Coins}
                 />
                 <Controls
                     startGameHandle={this.startNewGame}
