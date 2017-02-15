@@ -2,14 +2,14 @@ import React from 'react';
 import { Component } from 'react';
 import Coin from './coin';
 
-function getCoins(coins, coinClickHandle, activePlayer) {
+function getCoins(coins, coinClickHandle, activePlayer, coinsRemovedThisTurn) {
     return coins.map(coin => (
         <Coin
             key={coin.id} id={coin.id}
             xPos={coin.xPos}
             yPos={coin.yPos}
             deleted={coin.deleted}
-            handleClickCoin={() => coinClickHandle(coin.id, activePlayer)} />
+            handleClickCoin={() => coinClickHandle(coin.id, activePlayer, coinsRemovedThisTurn)} />
         )
     )
 }
@@ -24,13 +24,22 @@ function getPlayerCoins(coins) {
     )
 }
 
-const Board = ({coins, p1Coins, p2Coins, activePlayer, onCoinClick}) => (
+function alertMessage(str) {
+    return (
+        <div className="alert-winner button">
+            {str}
+        </div>
+    );
+}
+
+const Board = ({coins, p1Coins, p2Coins, activePlayer, coinsRemovedThisTurn, alerts, onCoinClick}) => (
     <div className="my-row">
         <div className="player-aside">
             { getPlayerCoins(p1Coins) }
         </div>
         <div className="game-board">
-            { getCoins(coins, onCoinClick, activePlayer) }
+            { getCoins(coins, onCoinClick, activePlayer, coinsRemovedThisTurn) }
+            { alerts ? alertMessage(alerts) : '' }
         </div>
         <div className="player-aside">
             { getPlayerCoins(p2Coins) }

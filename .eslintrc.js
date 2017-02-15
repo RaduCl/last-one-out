@@ -7,6 +7,6 @@ module.exports = {
         "import"
     ],
     "rules": {
-        "indent": ["error", 4]
+        // "indent": ["error", 4]
     }
 };
