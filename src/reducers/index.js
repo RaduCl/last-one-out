@@ -93,11 +93,25 @@ function activePlayer(state = 0, action) {
     }
 }
 
+function coinsRemovedThisTurn(state = 0, action) {
+    switch(action.type) {
+        case CHANGE_TURN:
+            console.log('coinsRemovedThisTurn reducer: CHANGE_TURN')
+            return 0
+        case DELETE_COIN:
+            console.log('coinsRemovedThisTurn reducer: DELETE_COIN', state)
+            return state + 1
+        default:
+            return state
+    }
+}
+
 const rootReducer = combineReducers({
     coins,
     p1Coins,
     p2Coins,
     activePlayer,
+    coinsRemovedThisTurn,
 });
 
 export default rootReducer;

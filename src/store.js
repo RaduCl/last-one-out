@@ -7,7 +7,9 @@ import rootReducer from './reducers/index';
 const defaultState = {
     coins: [],
     p1Coins: [],
+    p2Coins: [],
     activePlayer: 0,
+    coinsRemovedThisTurn: 0,
 }
 
 // const defaultState = {
