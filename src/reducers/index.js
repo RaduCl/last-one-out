@@ -46,7 +46,7 @@ function coins(state = [], action) {
     switch(action.type) {
         case DELETE_COIN:
             console.log('coins reducer: DELETE_COIN');
-            return state.filter(coin => coin.id !== action.coinId)
+            return state.filter(coin => coin.id !== action.payload.coinId)
         case START_NEW_GAME:
             console.log('coins reducer: START_NEW_GAME');
             return generateCoins(startingNrOfCoins());
@@ -58,8 +58,23 @@ function coins(state = [], action) {
 function p1Coins(state = [], action) {
     switch(action.type) {
         case DELETE_COIN:
-            console.log('p1Coins reducer: DELETE_COIN');
-            return state.concat({ id: action.coinId })
+            console.log('p1Coins reducer: DELETE_COIN ');
+            return action.payload.activePlayer === 1 ? state.concat({ id: action.payload.coinId }) : state
+        case START_NEW_GAME:
+            return []
+        default:
+            return state
+    }
+}
+
+
+function p2Coins(state = [], action) {
+    switch(action.type) {
+        case DELETE_COIN:
+            console.log('p2Coins reducer: DELETE_COIN ');
+            return action.payload.activePlayer === 2 ? state.concat({ id: action.payload.coinId }) : state
+        case START_NEW_GAME:
+            return []
         default:
             return state
     }
@@ -81,6 +96,7 @@ function activePlayer(state = 0, action) {
 const rootReducer = combineReducers({
     coins,
     p1Coins,
+    p2Coins,
     activePlayer,
 });
 

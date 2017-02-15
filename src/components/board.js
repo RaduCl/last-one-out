@@ -2,14 +2,14 @@ import React from 'react';
 import { Component } from 'react';
 import Coin from './coin';
 
-function getCoins(coins, coinClickHandle) {
+function getCoins(coins, coinClickHandle, activePlayer) {
     return coins.map(coin => (
         <Coin
             key={coin.id} id={coin.id}
             xPos={coin.xPos}
             yPos={coin.yPos}
             deleted={coin.deleted}
-            handleClickCoin={() => coinClickHandle(coin.id)} />
+            handleClickCoin={() => coinClickHandle(coin.id, activePlayer)} />
         )
     )
 }
@@ -24,16 +24,16 @@ function getPlayerCoins(coins) {
     )
 }
 
-const Board = ({coins, p1Coins, onCoinClick}) => (
+const Board = ({coins, p1Coins, p2Coins, activePlayer, onCoinClick}) => (
     <div className="my-row">
         <div className="player-aside">
             { getPlayerCoins(p1Coins) }
         </div>
         <div className="game-board">
-            { getCoins(coins, onCoinClick) }
+            { getCoins(coins, onCoinClick, activePlayer) }
         </div>
         <div className="player-aside">
-            { getPlayerCoins(p1Coins) }
+            { getPlayerCoins(p2Coins) }
         </div>
     </div>
 )

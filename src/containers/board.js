@@ -5,7 +5,8 @@ import Board from '../components/board';
 const mapStateToProps = (state) => ({
     coins: state.coins,
     p1Coins: state.p1Coins,
-    // p2Coins: state.p2Coins,
+    p2Coins: state.p2Coins,
+    activePlayer: state.activePlayer,
 })
 
 const mapDispatchToProps = ({

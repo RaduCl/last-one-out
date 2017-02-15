@@ -4,8 +4,14 @@ import {
     CHANGE_TURN,
 } from '../constants/ActionTypes';
 
-export function deleteCoin(coinId) {
-    return { type: DELETE_COIN, coinId }
+export function deleteCoin(coinId, activePlayer) {
+    return {
+        type: DELETE_COIN,
+        payload: {
+            coinId,
+            activePlayer
+        },
+    }
 }
 
 export function startNewGame() {
