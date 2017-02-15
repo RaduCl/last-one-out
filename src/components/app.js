@@ -1,9 +1,12 @@
 import React from 'react';
 import { Component } from 'react';
 import Title from './title';
-import Head from './header';
-import Board from './board';
-import Controls from './controls';
+// import Head from './header';
+import HeaderContainer from '../containers/header';
+// import Board from './board';
+import BoardContainer from '../containers/board';
+// import Controls from './controls';
+import ControlsContainer from '../containers/controls';
 
 export default class App extends Component {
     constructor(props) {
@@ -22,30 +25,30 @@ export default class App extends Component {
         // this.nextLoosingPosition = this.nextLoosingPosition.bind(this);
         this.removeCoin = this.removeCoin.bind(this);
         this.changePlayerTurn = this.changePlayerTurn.bind(this);
-        this.startNewGame = this.startNewGame.bind(this);
+        // this.startNewGame = this.startNewGame.bind(this);
         // this.computerPlay = this.computerPlay.bind(this);
     }
 
-    getCoinPosition(min, max) {
-        return Math.trunc((Math.random() * (max - min)) + min);
-    }
+    // getCoinPosition(min, max) {
+    //     return Math.trunc((Math.random() * (max - min)) + min);
+    // }
 
-    startingNrOfCoins() {
-        return (Math.floor(Math.random() * 20) + 10);
-    }
+    // startingNrOfCoins() {
+    //     return (Math.floor(Math.random() * 20) + 10);
+    // }
 
 
-    generateCoins(x) {
-        let arr = [];
-        for (let i = 0; i < x; i += 1) {
-            arr.push({
-                id: i,
-                xPos: `${this.getCoinPosition(9, 45)}vw`,
-                yPos: `${this.getCoinPosition(30, 60)}vh`,
-            });
-        }
-        return arr;
-    }
+    // generateCoins(x) {
+    //     let arr = [];
+    //     for (let i = 0; i < x; i += 1) {
+    //         arr.push({
+    //             id: i,
+    //             xPos: `${this.getCoinPosition(9, 45)}vw`,
+    //             yPos: `${this.getCoinPosition(30, 60)}vh`,
+    //         });
+    //     }
+    //     return arr;
+    // }
 
     // TODO figure a way to trigger computerPlay after setState(leftCoins)
     choseStartingPlayer() {
@@ -166,17 +169,17 @@ export default class App extends Component {
         }
     }
 
-    startNewGame() {
-        this.setState({
-            coinsLeft: this.generateCoins(this.startingNrOfCoins()),
-            activePlayer: this.choseStartingPlayer(),
-            coinsRemovedThisTurn: 0,
-            p1Coins: [],
-            p2Coins: [],
-            endOfGame: false,
-        });
-        // this.beginPlaying();
-    }
+    // startNewGame() {
+    //     this.setState({
+    //         coinsLeft: this.generateCoins(this.startingNrOfCoins()),
+    //         activePlayer: this.choseStartingPlayer(),
+    //         coinsRemovedThisTurn: 0,
+    //         p1Coins: [],
+    //         p2Coins: [],
+    //         endOfGame: false,
+    //     });
+    //     // this.beginPlaying();
+    // }
 
     // beginPlaying() {
     //     // check is computer activePlayer
@@ -187,27 +190,9 @@ export default class App extends Component {
         return (
             <div>
                 <Title />
-                <Head
-                    coinsLeft={this.state.coinsLeft.length}
-                    activePlayer={this.state.activePlayer}
-                    p1={this.state.P1}
-                    p2={this.state.P2}
-                />
-                <Board
-                    coinsLeft={this.state.coinsLeft}
-                    handleClickCoin={coinId => this.removeCoin(coinId)}
-                    endOfGame = {this.state.endOfGame}
-                    alertWinner = {() => this.alertWinner}
-                    activePlayer = {this.state.activePlayer}
-                    p1={this.state.P1}
-                    p2={this.state.P2}
-                    p1Coins={this.state.p1Coins}
-                    p2Coins={this.state.p2Coins}
-                />
-                <Controls
-                    startGameHandle={this.startNewGame}
-                    changeTurnHandle={this.changePlayerTurn}
-                />
+                <HeaderContainer />
+                <BoardContainer />
+                <ControlsContainer />
             </div>
         );
     }

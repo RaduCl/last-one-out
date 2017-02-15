@@ -7,8 +7,10 @@ const Controls = ({startGameHandle, changeTurnHandle}) => {
         <div className="controls">
             <NewGameButton startGameHandle={startGameHandle} />
             <div
-            onClick={() => changeTurnHandle()}
-            className="button end-turn controls-item" >End Turn</div>
+                onClick={changeTurnHandle}
+                className="button end-turn controls-item" >
+                End Turn
+            </div>
         </div>
     )
 }
