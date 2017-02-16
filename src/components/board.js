@@ -2,13 +2,14 @@ import React from 'react';
 import { Component } from 'react';
 import Coin from './coin';
 
-function getCoins(coins, coinClickHandle, activePlayer, coinsRemovedThisTurn) {
+function getCoins(coins, coinClickHandle, activePlayer, coinsRemovedThisTurn, gameOver) {
     return coins.map(coin => (
         <Coin
             key={coin.id} id={coin.id}
             xPos={coin.xPos}
             yPos={coin.yPos}
             deleted={coin.deleted}
+            gameOver={gameOver}
             handleClickCoin={() => coinClickHandle(coin.id, activePlayer, coinsRemovedThisTurn)} />
         )
     )
@@ -35,21 +36,21 @@ function alertMessage(str) {
 function winnerAlert(activePlayer) {
     return (
         <div className="alert-box winner button">
-            { activePlayer === 1 ? `P2 is the Winner !` : `P1 is the Winner !`}
+            { activePlayer === 1 ? `P1 is the Winner !` : `P2 is the Winner !`}
         </div>
     );
 }
 
 
-const Board = ({coins, p1Coins, p2Coins, activePlayer, coinsRemovedThisTurn, alerts, onCoinClick}) => (
+const Board = ({coins, p1Coins, p2Coins, activePlayer, coinsRemovedThisTurn, alerts, gameOver, onCoinClick}) => (
     <div className="my-row">
         <div className="player-aside">
             { getPlayerCoins(p1Coins) }
         </div>
         <div className="game-board">
-            { getCoins(coins, onCoinClick, activePlayer, coinsRemovedThisTurn) }
+            { getCoins(coins, onCoinClick, activePlayer, coinsRemovedThisTurn, gameOver) }
             { alerts ? alertMessage(alerts) : '' }
-            { false ? winnerAlert(activePlayer) : '' }
+            { coins.length === 1 ? winnerAlert(activePlayer) : '' }
         </div>
         <div className="player-aside">
             { getPlayerCoins(p2Coins) }

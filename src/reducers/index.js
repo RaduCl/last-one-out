@@ -5,6 +5,7 @@ import {
     CHANGE_TURN,
     COINS_PER_TURN_OVERLIMIT,
     COINS_PER_TURN_UNDERLIMIT,
+    GAME_OVER,
 } from '../constants/ActionTypes';
 
 // const defaultState = {
@@ -122,6 +123,17 @@ function alerts(state = '', action) {
     }
 }
 
+function gameOver(state = false, action) {
+    switch (action.type) {
+        case GAME_OVER:
+            return true;
+        case START_NEW_GAME:
+            return false;
+        default:
+            return state;
+    }
+}
+
 const rootReducer = combineReducers({
     coins,
     p1Coins,
@@ -129,6 +141,7 @@ const rootReducer = combineReducers({
     activePlayer,
     coinsRemovedThisTurn,
     alerts,
+    gameOver,
 });
 
 export default rootReducer;

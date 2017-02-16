@@ -9,6 +9,7 @@ const mapStateToProps = (state) => ({
     activePlayer: state.activePlayer,
     coinsRemovedThisTurn: state.coinsRemovedThisTurn,
     alerts: state.alerts,
+    gameOver: state.gameOver,
 })
 
 const mapDispatchToProps = ({
