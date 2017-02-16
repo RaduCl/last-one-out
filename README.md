@@ -1,4 +1,4 @@
-# ReduxSimpleStarter
+# Last One Out Loses
 
 ###Getting Started###
 
