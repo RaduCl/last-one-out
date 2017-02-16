@@ -5,8 +5,8 @@
 There are two methods for getting started with this repo.
 
 ```
-	> git clone git@github.com:StephenGrider/ReduxSimpleStarter.git
-	> cd ReduxSimpleStarter
+	> git clone git@github.com:RaduCl/last-one-out.git
+	> cd last-one-out
 	> npm install
 	> npm start
 ```
