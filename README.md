@@ -2,7 +2,6 @@
 
 ###Getting Started###
 
-There are two methods for getting started with this repo.
 
 ```
 	> git clone git@github.com:RaduCl/last-one-out.git

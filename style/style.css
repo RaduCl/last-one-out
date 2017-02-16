@@ -59,6 +59,7 @@ body {
 
 body{
     background-color: #004066!important;
+    font-family: AllerFont, Fallback, sans-serif;
 }
 
 
@@ -67,7 +68,7 @@ body{
     margin-top: 25px;
 }
 .game-logo img{
-    width: 40vw;
+    width: 43vw;
 }
 .coin{
     width: 6vw;
@@ -102,6 +103,7 @@ body{
     /*font-weight: bold;*/
     /*font-style: italic;*/
 }
+
 .end-turn, .new-game{
     cursor: pointer;
 }
