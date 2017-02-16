@@ -4,9 +4,6 @@
 
 There are two methods for getting started with this repo.
 
-####Familiar with Git?#####
-Checkout this repo, install depdencies, then start the gulp process with the following:
-
 ```
 	> git clone git@github.com:StephenGrider/ReduxSimpleStarter.git
 	> cd ReduxSimpleStarter
@@ -14,10 +11,7 @@ Checkout this repo, install depdencies, then start the gulp process with the fol
 	> npm start
 ```
 
-####Not Familiar with Git?#####
-Click [here](https://github.com/StephenGrider/ReactStarter/releases) then download the .zip file.  Extract the contents of the zip file, then open your terminal, change to the project directory, and:
+###Game Description###
+Last one out loses is a simple game where a playing surface is covered with at least 20 coins. There are two players, each of which may remove 1 to 3 items. The person who removes the final item to clear the playing surface loses the game.
 
-```
-	> npm install
-	> npm start
-```
+![alt img](http://res.cloudinary.com/des3crator/image/upload/v1487254381/preview_tx92sa.png)
