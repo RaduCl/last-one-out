@@ -1,4 +1,10 @@
 @import url("https://fonts.googleapis.com/css?family=Ubuntu:300,300i,400,400i,500,500i,700,700i");
+
+@font-face {
+    font-family: AllerFont;
+    src: url('./fonts/AllerDisplay.woff') format('woff');
+}
+
 body {
     font-family: 'Ubuntu', 'sans-serif' !important;
 }
@@ -91,9 +97,10 @@ body{
     -moz-box-shadow: 0px 5px 4px #272727;
     -webkit-box-shadow: 0px 5px 4px #272727;
     box-shadow: 0px 5px 4px #272727;
-    font-family: 'Ubuntu' !important;
-    font-weight: bold;
-    font-style: italic;
+    /*font-family: 'Ubuntu' !important;*/
+    font-family: 'AllerFont' !important;
+    /*font-weight: bold;*/
+    /*font-style: italic;*/
 }
 .end-turn, .new-game{
     cursor: pointer;
@@ -131,16 +138,17 @@ body{
     font-weight: 700;
     z-index: 2;
     box-shadow: rgba(0, 0, 0, 0.61) 12px 12px 50px;
-    font-size: 47px !important;
     border: 5px solid;
 }
 
 .winner {
     background-color: #7aab05;
+    font-size: 45px !important;
 }
 
 .warning {
     background-color: #d20707;
+    font-size: 30px !important;
 }
 
 .button{
