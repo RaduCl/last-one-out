@@ -4,6 +4,7 @@ import {
     START_NEW_GAME,
     CHANGE_TURN,
     COINS_PER_TURN_OVERLIMIT,
+    COINS_PER_TURN_UNDERLIMIT,
 } from '../constants/ActionTypes';
 
 // const defaultState = {
@@ -108,9 +109,12 @@ function coinsRemovedThisTurn(state = 0, action) {
 
 function alerts(state = '', action) {
     switch (action.type) {
+        case COINS_PER_TURN_UNDERLIMIT:
+            return 'You have to remove at least 1 coin'
         case COINS_PER_TURN_OVERLIMIT:
             return 'You can remove maximum 3 coins per turn';
         case CHANGE_TURN:
+        case DELETE_COIN:
         case START_NEW_GAME:
             return '';
         default:
@@ -124,7 +128,7 @@ const rootReducer = combineReducers({
     p2Coins,
     activePlayer,
     coinsRemovedThisTurn,
-    alerts
+    alerts,
 });
 
 export default rootReducer;

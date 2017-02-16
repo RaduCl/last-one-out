@@ -7,7 +7,9 @@ const mapDispatchToProps = ({
     changeTurnHandle: changeTurn,
 })
 
-const mapStateToProps = state => ({})
+const mapStateToProps = state => ({
+    coinsRemovedThisTurn: state.coinsRemovedThisTurn,
+})
 
 const ControlsContainer = connect(
     mapStateToProps,

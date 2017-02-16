@@ -119,14 +119,21 @@ body{
     background-color: #5e8405 !important;
 }
 
-.alert-winner{
-    background-color: #7aab05;
-    font-size: 47px !important;
+.alert-box {
     font-weight: 700;
     z-index: 2;
     box-shadow: rgba(0, 0, 0, 0.61) 12px 12px 50px;
+    font-size: 47px !important;
+    border: 5px solid;
 }
 
+.winner {
+    background-color: #7aab05;
+}
+
+.warning {
+    background-color: #d20707;
+}
 
 .button{
     padding: .75rem 1.25rem;

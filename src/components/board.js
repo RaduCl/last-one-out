@@ -26,11 +26,20 @@ function getPlayerCoins(coins) {
 
 function alertMessage(str) {
     return (
-        <div className="alert-winner button">
+        <div className="alert-box warning button">
             {str}
         </div>
     );
 }
+
+function winnerAlert(activePlayer) {
+    return (
+        <div className="alert-box winner button">
+            { activePlayer === 1 ? `P2 is the Winner !` : `P1 is the Winner !`}
+        </div>
+    );
+}
+
 
 const Board = ({coins, p1Coins, p2Coins, activePlayer, coinsRemovedThisTurn, alerts, onCoinClick}) => (
     <div className="my-row">
@@ -40,6 +49,7 @@ const Board = ({coins, p1Coins, p2Coins, activePlayer, coinsRemovedThisTurn, ale
         <div className="game-board">
             { getCoins(coins, onCoinClick, activePlayer, coinsRemovedThisTurn) }
             { alerts ? alertMessage(alerts) : '' }
+            { false ? winnerAlert(activePlayer) : '' }
         </div>
         <div className="player-aside">
             { getPlayerCoins(p2Coins) }
