@@ -9,6 +9,9 @@ import {
 import store from '../store';
 
 export function deleteCoin(coinId, activePlayer, coinsRemovedThisTurn) {
+    if (store.getState().coins.length === 2) {
+        store.dispatch(gameOver());
+    }
     if (coinsRemovedThisTurn > 2) {
         return {
             type: COINS_PER_TURN_OVERLIMIT,
